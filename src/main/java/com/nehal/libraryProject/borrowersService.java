@@ -28,8 +28,9 @@ public class borrowersService {
 			try {
 				List<Integer> freeBookid=booksRepo.getFreeBook(booktitle);
 				System.out.println(freeBookid+" "+booktitle);
-				if(freeBookid.size()>0)
+				if(freeBookid.size()>0) {
 					booksRepo.updateBooksByBooktitle(borrowerid, freeBookid.get(0));
+					return new ResponseEntity("Book Borrowed Successfully",HttpStatus.OK);}
 				else
 					return new ResponseEntity("Book not available",HttpStatus.NOT_FOUND);
 			}
@@ -37,8 +38,6 @@ public class borrowersService {
 				System.out.println(e);
 				return new ResponseEntity(HttpStatus.BAD_REQUEST);
 			}
-			
-			return new ResponseEntity(HttpStatus.OK);
 		}
 		
 	}
